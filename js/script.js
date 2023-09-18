@@ -2,6 +2,30 @@
 
   "use strict";
 
+  $('#searchForm').on('submit', async function(evt) {
+    console.log('searching');
+    evt.preventDefault();
+
+    const suppliers = await fetch("https://promobotdatacollectorapi.azurewebsites.net/Suppliers").then((response) => {
+      if (response.status >= 400 && response.status < 600) {
+        console.log('error', response)
+        //throw new Error("Bad response from server");
+      }
+      return response;
+    }).then((returnedResponse) => {
+      // Your response to manipulate
+      return returnedResponse.json();
+    }).catch((error) => {
+      // Your error is here!
+      console.log(error)
+    });
+
+    //const response = await fetch("https://promobotdatacollectorapi.azurewebsites.net/Suppliers");
+    //const suppliers = await response.json();
+    console.log(suppliers);
+
+  });
+
   var searchPopup = function() {
       // open search box
       $('.secondary-nav').on('click', '.search-button', function(e) {
