@@ -526,7 +526,18 @@ table,
 form {
   margin-bottom: 2rem; 
 }
+.banner-img {
+  position: relative;
+  width: 100%;
+ 
+  overflow: hidden; /* Hide any overflow from the image */
+}
 
+.banner-img img {
+  width: 100%;
+  
+  object-fit: cover; /* Ensure the image covers the entire div */
+}
 /*------------------------------------------------
 /* 2.8 Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -2075,7 +2086,7 @@ i.icon.icon-arrow-io {
 }
 .product-collection .left-content .product-entry {
     right: 0;
-    bottom: 90px;
+    bottom: 200px;
 }
 .product-collection .categories {
     text-transform: uppercase;
@@ -2110,7 +2121,7 @@ i.icon.icon-arrow-io {
   }
   .product-collection .left-content .product-entry,
   .product-collection .right-content .product-entry {
-      left: 0;
+      /* left: 0; */
       right: 0;
       margin: auto;
       width: 75%;
