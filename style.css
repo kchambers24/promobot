@@ -992,6 +992,9 @@ img.image-circle {
   .site-banner h1.page-title{
       font-size: 3.2em;
   }
+  .brand-logos {
+    justify-content: center !important;
+  }
 }
 
 /* Hero section
@@ -3056,7 +3059,7 @@ section.categories .category-content a{
   display: flex;
   padding: 10px;
   border-top: var(--border);
-  background: #eee;
+  background: #ebebeb;
   border-radius: 25px;
 }
 .msger-inputarea * {
@@ -3068,8 +3071,9 @@ section.categories .category-content a{
 
 .msger-input {
   flex: 1;
-  background: #ddd;
+  background: #bebebe !important;
   width: 968px;
+  color: black !important;
 }
 
 
