@@ -2440,6 +2440,11 @@ a.blog-categories:hover{
     color: var(--primary-color);
     padding-right: 15px;
 }
+.fa {
+  font-size: 1.5em;
+  color: var(--primary-color);
+  padding-right: 15px;
+}
 .icon-box h4.block-title {
     line-height: 1.2;
     font-weight: 400;
