@@ -924,7 +924,7 @@ img.insta-image {
 }
 img.large-image {
     width: 100%;
-    height: 790px;
+    height: 745px;
     object-fit: cover;
 }
 img.small-image {
@@ -962,8 +962,8 @@ img.image-circle {
   text-align: center;
 }
 .site-banner h1.page-title{
-    font-size: 7.2em;
-    font-weight: 800;
+    font-size: 5.2em;
+    font-weight: 700;
     line-height: 1em;
     letter-spacing: -0.02em;
     text-transform: capitalize;
@@ -1644,10 +1644,12 @@ blockquote cite {
 .menu-list .submenu a.item-anchor:hover{
   color: #263151;
   background-color: #9DFFF2;
+  border-radius: 5px;
 }
 .menu-list .submenu a.item-anchor.active{
   color: #263151;
   background-color: #9DFFF2;
+  border-radius: 5px;
 }
 
 /* Search Bar
@@ -2089,7 +2091,7 @@ i.icon.icon-arrow-io {
 }
 .product-collection .left-content .product-entry {
     right: 0;
-    bottom: 200px;
+    bottom: 160px;
 }
 .product-collection .categories {
     text-transform: uppercase;
@@ -3088,4 +3090,46 @@ section.categories .category-content a{
 .msger-send-btn:hover {
   background: #9DFFF2;
   color:#263151;
+}
+
+
+
+
+
+
+.image-holder {
+  position: relative;
+  overflow: hidden;
+}
+
+.starline-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8); /* Start with a smaller size */
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s ease;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Initially transparent */
+  opacity: 0; /* Initially transparent */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.image-link:hover .starline-image {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* Zoom in effect on hover */
+  z-index: 1;
+}
+
+.image-link:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background on hover */
+  opacity: 1;
 }
