@@ -2980,10 +2980,10 @@ section.categories .category-content a{
   max-width: 850px;
   padding: 15px;
   border-radius: 15px;
-  background: #0069a6;
+  background: #263151;
 }
 .left-msg .msg-bubble {
-  background-color: #0069a6;
+  background-color: #263151;
 }
 .right-msg .msg-bubble {
   background-color: #eee; 
@@ -3079,12 +3079,13 @@ section.categories .category-content a{
 
 .msger-send-btn {
   margin-left: 10px;
-  background: #0069a6;
+  background: #263151;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
 }
 .msger-send-btn:hover {
-  background: #00a6a6;
+  background: #9DFFF2;
+  color:#263151;
 }
