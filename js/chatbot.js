@@ -54,33 +54,20 @@ $(document).ready(function(){
             isLoading = true;
             console.log(118);
 
-            $.ajax({
-                url: "/query",
-                method:"POST",
-                data: JSON.stringify({input: prompt}),
-                contentType:"application/json; charset=utf-8",
-                dataType:"json",
-                success: function(data){
-                    console.log(data)
-                    appendMessage(BOT_NAME, BOT_IMG, "left", data.response);
-                    let index = data.source.indexOf("(");
-                    let parsedInfo = data.source.substring(0, index) + data.source.substring(data.source.indexOf(")") + 1);
-                    $("#source").html("<small class='text-secondary'>" + parsedInfo + "</small>");
-                    clearInterval(myInterval);
-                    t = 0;
-                    $("#response").html("<p></p>");
-                },
-                error: function(xhr, textStatus, error){
-                    console.log(199);
-                    console.log(xhr.statusText);
-                    console.log(textStatus);
-                    console.log(error);
-                    clearInterval(myInterval);
-                    t = 0;
-                    $("#response").html("<p></p>");
-                }
+            executePrompt(prompt).then(function(data) {
+                console.log(data)
+                appendMessage(BOT_NAME, BOT_IMG, "left", data.response);
+                let index = data.source.indexOf("(");
+                let parsedInfo = data.source.substring(0, index) + data.source.substring(data.source.indexOf(")") + 1);
+                $("#source").html("<small class='text-secondary'>" + parsedInfo + "</small>");
+                clearInterval(myInterval);
+                t = 0;
+                $("#response").html("<p></p>");
+            }).catch(function(err) {
+                clearInterval(myInterval);
+                t = 0;
+                $("#response").html("<p></p>");
             });
-            
         }
     });
     
@@ -90,4 +77,26 @@ $(document).ready(function(){
             $("#send").click(); // trigger the form submission by clicking the button
         }
     });
+
+    function executePrompt(prompt) {
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+                url: "https://promobotapi.azurewebsites.net/query",
+                method:"POST",
+                data: JSON.stringify({input: prompt}),
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                success: function(data){
+                    resolve(data);
+                },
+                error: function(xhr, textStatus, error){
+                    reject(error);
+                    // console.log(199);
+                    // console.log(xhr.statusText);
+                    // console.log(textStatus);
+                    // console.log(error);
+                }
+            });
+        });
+    }
 });

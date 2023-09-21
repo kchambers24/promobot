@@ -6,7 +6,7 @@
     console.log('searching');
     evt.preventDefault();
 
-    const suppliers = await fetch("https://promobotdatacollectorapi.azurewebsites.net/Suppliers").then((response) => {
+    const suppliers = await fetch("https://promobotdatacollectorapi.azurewebsites.net/Products/{ProductID}").then((response) => {
       if (response.status >= 400 && response.status < 600) {
         console.log('error', response)
         //throw new Error("Bad response from server");
