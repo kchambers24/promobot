@@ -1,23 +1,9 @@
 $(document).ready(function(){  
     t = 0;
-    let searchedProducts = [];
+    let searchedProducts = {};
 
 // add loved products here
 
-
-function toggleSaveClearButtons() {
-    var productsData = document.getElementById("products-data");
-    var saveClearButtons = document.querySelector(".save-clear");
-    
-    if (productsData.textContent.trim() === "") {
-        saveClearButtons.style.display = "none"; // Hide the buttons
-    } else {
-        saveClearButtons.style.display = "block"; // Show the buttons
-    }
-}
-
-// Call the function initially
-toggleSaveClearButtons();
     
     $('#send').click(function(e){
         e.preventDefault();
@@ -100,20 +86,21 @@ toggleSaveClearButtons();
         }
     });
 
-    $("#products-save").on('click', function(evt) {
+    $("#products-data").on('click', '.products-save', function(evt) {
+        let target = $(evt.target);
+        let itemId = target.closest('[data-item-id]').data('item-id');
         // Get saved products from storage
         let savedProductString = localStorage.getItem('products');
         let savedProducts = JSON.parse(savedProductString) || [];
-
-        let allProducts = savedProducts.concat(searchedProducts);
+        let itemData = searchedProducts[itemId];
+        let allProducts = savedProducts.concat(itemData);
+        //searchedProducts);
         localStorage.setItem('products', JSON.stringify(allProducts));
 
-        $('#products-data').empty();
-    })
-
-    $("#products-clear").on('click', function(evt) {
-        $('#products-data').empty();
-    })
+        //$('#products-data').empty();
+    }).on('click', ".products-clear, .products-save", function(evt) {
+        $(evt.target).closest('.variable-products-data').remove();
+    });
 
     function executePrompt(prompt) {
         return new Promise(function(resolve, reject) {
@@ -165,11 +152,22 @@ toggleSaveClearButtons();
             }).done(function(data) {            
                 console.log('product data', data);
                 if (data && data.id) {
-                    searchedProducts.push(data);
-                    productDiv.append(`<div class="featuredProducts"><img class="productImage" src="${data.product.primaryImageUrl}" style="border-radius: 10px;padding-bottom: 10px;"></div><div><p><strong>${data.product.productName}</strong><br/>${data.product.description}<br/>Supplier: <strong>${data.product.productBrand}</strong> </p></div>`);
+                    searchedProducts[data.product.productId] = data;
+                    //searchedProducts.push(data);
+                    productDiv.append(`<div class="variable-products-data"><div class="featuredProducts">
+                    <img class="productImage" src="${data.product.primaryImageUrl}" style="border-radius: 10px;padding-bottom: 10px;">
+                    </div>
+                    <div><p><strong>${data.product.productName}</strong><br/>${data.product.description}<br/>Supplier: <strong>${data.product.productBrand}</strong></p>
+                    </div>
+                    <div id="saveClearContainer" class="save-clear" style="display: flex;justify-content: space-around;">
+                    <button class="products-save" data-item-id="${data.product.productId}"><img src="images/thumbs-up_1f44d.png" alt="save" class="save-img" style="width: 50px;"></button>
+                    <button class="products-clear" data-item-id="${data.product.productId}"><img src="images/thumbs-down_1f44e.png" alt="save" class="save-img" style="width: 50px;"></button>
+                    </div>
+                    </div>`);
+
+
                 }
-            });
-            toggleSaveClearButtons();
+            });           
         }
     }
 

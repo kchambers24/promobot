@@ -247,10 +247,10 @@
                 <div id="products-data" class="productData" style="display: flex;flex-wrap: wrap;justify-content: center;"></div>
               </div>
               
-              <div id="saveClearContainer" class="save-clear" style="display: flex;justify-content: space-around;">
+              <!-- <div id="saveClearContainer" class="save-clear" style="display: flex;justify-content: space-around;">
                 <div id="products-save"><img src="images/thumbs-up_1f44d.png" alt="save" class="save-img" style="width: 50px;"></div>
                 <div id="products-clear"><img src="images/thumbs-down_1f44e.png" alt="save" class="save-img" style="width: 50px;"></div>
-              </div>
+              </div> -->
             </div>
   
     
@@ -393,26 +393,3 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <script type="text/javascript" src="js/chatbot.js"></script>
-  <script>
-
-    // Get references to the div elements
-    const valueDiv = document.getElementById("products-data");
-    const displayDiv = document.getElementById("saveClearContainer");
-  
-    // Create a MutationObserver to watch for changes in valueDiv
-    const observer = new MutationObserver(function () {
-      // Check the value and show/hide the displayDiv accordingly
-      if (valueDiv.textContent.trim() === "") {
-        displayDiv.style.display = "none"; // Hide the displayDiv
-      } else {
-        displayDiv.style.display = "flex"; // Show the displayDiv
-      }
-    });
-  
-    // Configure the observer to monitor for changes in child nodes
-    const config = { childList: true };
-  
-    // Start observing changes in valueDiv
-    observer.observe(valueDiv, config);
-
-  </script>
