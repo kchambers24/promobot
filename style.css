@@ -2580,6 +2580,15 @@ a.blog-categories:hover{
   padding: 15px;
   margin: 10px;
   width: 400px;
+  position: relative;
+}
+.product-desc {
+  line-height: 1.2;
+}
+.product-vendor {
+  position: absolute; /* Set the vendor div to absolute positioning */
+  bottom: -15px;; /* Position it at the bottom */
+  left: 17; /* Align it to the left */
 }
 /* 7.3 Shop Page & Blog Page
 --------------------------------------------------------------*/
