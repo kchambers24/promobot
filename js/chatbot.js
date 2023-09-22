@@ -1,5 +1,23 @@
 $(document).ready(function(){  
     t = 0;
+    let searchedProducts = [];
+
+// add loved products here
+
+
+function toggleSaveClearButtons() {
+    var productsData = document.getElementById("products-data");
+    var saveClearButtons = document.querySelector(".save-clear");
+    
+    if (productsData.textContent.trim() === "") {
+        saveClearButtons.style.display = "none"; // Hide the buttons
+    } else {
+        saveClearButtons.style.display = "block"; // Show the buttons
+    }
+}
+
+// Call the function initially
+toggleSaveClearButtons();
     
     $('#send').click(function(e){
         e.preventDefault();
@@ -10,8 +28,8 @@ $(document).ready(function(){
             $("#response").text("Please ask a question.");
         }
         else{
-            const BOT_IMG = "../../static/images/robot.png";
-            const PERSON_IMG = "../../static/images/user.png";
+            const BOT_IMG = "images/Promo-Bot-head.png";
+            const PERSON_IMG = "images/user.png";
             const BOT_NAME = "PromoBot";
             const PERSON_NAME = "You";
 
@@ -56,10 +74,14 @@ $(document).ready(function(){
 
             executePrompt(prompt).then(function(data) {
                 console.log(data)
+                /*
+                data.source
+                */
                 appendMessage(BOT_NAME, BOT_IMG, "left", data.response);
                 let index = data.source.indexOf("(");
                 let parsedInfo = data.source.substring(0, index) + data.source.substring(data.source.indexOf(")") + 1);
                 $("#source").html("<small class='text-secondary'>" + parsedInfo + "</small>");
+                searchProducts(data.response);
                 clearInterval(myInterval);
                 t = 0;
                 $("#response").html("<p></p>");
@@ -77,6 +99,21 @@ $(document).ready(function(){
             $("#send").click(); // trigger the form submission by clicking the button
         }
     });
+
+    $("#products-save").on('click', function(evt) {
+        // Get saved products from storage
+        let savedProductString = localStorage.getItem('products');
+        let savedProducts = JSON.parse(savedProductString) || [];
+
+        let allProducts = savedProducts.concat(searchedProducts);
+        localStorage.setItem('products', JSON.stringify(allProducts));
+
+        $('#products-data').empty();
+    })
+
+    $("#products-clear").on('click', function(evt) {
+        $('#products-data').empty();
+    })
 
     function executePrompt(prompt) {
         return new Promise(function(resolve, reject) {
@@ -99,4 +136,41 @@ $(document).ready(function(){
             });
         });
     }
+
+    function searchProducts(parsedInfo) {
+        console.log('parsedInfo', parsedInfo);
+        //let productIds = [...parsedInfo.matchAll(/([A-Z]{1,6})?([0-9]{2,5})([A-Z]{1,6})?([0-9]{1,5})?([A-Z]{1,6})?/g)];
+        let productIds = [...parsedInfo.matchAll(/([0-9]{3,6})/g)];
+        productIds = productIds.map((x) => x[0]);
+        productIds = [... new Set(productIds)];
+        console.log('productIds', productIds);
+        let productDiv = $('#products-data');
+        for (let i = 0; i < productIds.length; i++) {
+            let id = productIds[i];
+            let url = `https://promobotdatacollectorapi.azurewebsites.net/Products/${id}`;
+            console.log('id', id, url);
+            fetch(url);
+            $.ajax({
+                url: `https://promobotdatacollectorapi.azurewebsites.net/Products/${id}`,
+                method:"GET",
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                error: function(xhr, textStatus, error){
+                    console.log(error);
+                    // console.log(199);
+                    // console.log(xhr.statusText);
+                    // console.log(textStatus);
+                    // console.log(error);
+                }
+            }).done(function(data) {            
+                console.log('product data', data);
+                if (data && data.id) {
+                    searchedProducts.push(data);
+                    productDiv.append(`<div class="featuredProducts"><img class="productImage" src="${data.product.primaryImageUrl}" style="border-radius: 10px;padding-bottom: 10px;"></div><div><p><strong>${data.product.productName}</strong><br/>${data.product.description}<br/>Supplier: <strong>${data.product.productBrand}</strong> </p></div>`);
+                }
+            });
+            toggleSaveClearButtons();
+        }
+    }
+
 });

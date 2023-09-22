@@ -218,8 +218,9 @@
                   </div>
                 </div>
               </form>
+              <p id="response"></p>
             </div>
-      
+     
           <div class="row">
               <div class="col-md-12">
                 
@@ -234,127 +235,25 @@
 
     </section>
 
-    <section id="featured-products" class="product-store padding-large">
+    <section id="featured-products" class="product-store padding-large" style="padding-top: 10px;">
       <div class="container">
         <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
-          <h2 class="section-title">Featured Products</h2>            
-          <!-- <div class="btn-wrap">
-            <a href="shop.html" class="d-flex align-items-center">View all products <i class="icon icon icon-arrow-io"></i></a>
-          </div>             -->
+          <h2 class="section-title">Featured Product</h2>            
         </div>
-        <div class="swiper product-swiper overflow-hidden">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="product-item">
-                <div class="image-holder">
-                  <img src="images/product-item1.jpg" alt="Books" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">add to cart <i class="icon icon-arrow-io"></i>
-                    </button>
-                    <button type="button" class="view-btn tooltip
-                        d-flex">
-                      <i class="icon icon-screen-full"></i>
-                      <span class="tooltip-text">Quick view</span>
-                    </button>
-                    <button type="button" class="wishlist-btn">
-                      <i class="icon icon-heart"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail">
-                  <h3 class="product-title">
-                    <a href="single-product.html">Full sleeve cover shirt</a>
-                  </h3>
-                  <span class="item-price text-primary">$40.00</span>
-                </div>
+        
+            <!-- products -->
+            <div id="variable-product-data">
+              <div class="data-container">
+                <div id="products-data" class="productData" style="display: flex;flex-wrap: wrap;justify-content: center;"></div>
+              </div>
+              
+              <div id="saveClearContainer" class="save-clear" style="display: flex;justify-content: space-around;">
+                <div id="products-save"><img src="images/thumbs-up_1f44d.png" alt="save" class="save-img" style="width: 50px;"></div>
+                <div id="products-clear"><img src="images/thumbs-down_1f44e.png" alt="save" class="save-img" style="width: 50px;"></div>
               </div>
             </div>
-            <div class="swiper-slide">
-              <div class="product-item">
-                <div class="image-holder">
-                  <img src="images/product-item2.jpg" alt="Books" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">add to cart <i class="icon icon-arrow-io"></i>
-                    </button>
-                    <button type="button" class="view-btn tooltip
-                        d-flex">
-                      <i class="icon icon-screen-full"></i>
-                      <span class="tooltip-text">Quick view</span>
-                    </button>
-                    <button type="button" class="wishlist-btn">
-                      <i class="icon icon-heart"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail">
-                  <h3 class="product-title">
-                    <a href="single-product.html">Volunteer Half blue</a>
-                  </h3>
-                  <span class="item-price text-primary">$38.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item">
-                <div class="image-holder">
-                  <img src="images/product-item3.jpg" alt="Books" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">add to cart <i class="icon icon-arrow-io"></i>
-                    </button>
-                    <button type="button" class="view-btn tooltip
-                        d-flex">
-                      <i class="icon icon-screen-full"></i>
-                      <span class="tooltip-text">Quick view</span>
-                    </button>
-                    <button type="button" class="wishlist-btn">
-                      <i class="icon icon-heart"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail">
-                  <h3 class="product-title">
-                    <a href="single-product.html">Double yellow shirt</a>
-                  </h3>
-                  <span class="item-price text-primary">$44.00</span>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-item">
-                <div class="image-holder">
-                  <img src="images/product-item4.jpg" alt="Books" class="product-image">
-                </div>
-                <div class="cart-concern">
-                  <div class="cart-button d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">add to cart <i class="icon icon-arrow-io"></i>
-                    </button>
-                    <button type="button" class="view-btn tooltip
-                        d-flex">
-                      <i class="icon icon-screen-full"></i>
-                      <span class="tooltip-text">Quick view</span>
-                    </button>
-                    <button type="button" class="wishlist-btn">
-                      <i class="icon icon-heart"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="product-detail">
-                  <h3 class="product-title">
-                    <a href="single-product.html">Long belly grey pant</a>
-                  </h3>
-                  <span class="item-price text-primary">$33.00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
+  
+    
       </div>
     </section>
 
@@ -494,3 +393,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <script type="text/javascript" src="js/chatbot.js"></script>
+  <script>
+
+    // Get references to the div elements
+    const valueDiv = document.getElementById("products-data");
+    const displayDiv = document.getElementById("saveClearContainer");
+  
+    // Create a MutationObserver to watch for changes in valueDiv
+    const observer = new MutationObserver(function () {
+      // Check the value and show/hide the displayDiv accordingly
+      if (valueDiv.textContent.trim() === "") {
+        displayDiv.style.display = "none"; // Hide the displayDiv
+      } else {
+        displayDiv.style.display = "flex"; // Show the displayDiv
+      }
+    });
+  
+    // Configure the observer to monitor for changes in child nodes
+    const config = { childList: true };
+  
+    // Start observing changes in valueDiv
+    observer.observe(valueDiv, config);
+
+  </script>
